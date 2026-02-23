@@ -313,6 +313,10 @@ const App: React.FC = () => {
 
             <ActivityChart data={filteredAndSortedUsernames.map(u => statsMap[u]).filter(Boolean)} />
             <ComparisonChart data={filteredAndSortedUsernames.map(u => statsMap[u]).filter(Boolean)} />
+
+            <div className="mt-16 text-center text-sm text-slate-500 pb-8 flex space-x-4 justify-center">
+              <a href="/privacy.html" className="hover:text-orange-400 transition-colors">Privacy Policy</a>
+            </div>
           </>
         )}
       </main>
