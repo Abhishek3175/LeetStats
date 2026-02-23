@@ -214,11 +214,11 @@ const App: React.FC = () => {
           <div className="flex items-center gap-4">
             {currentUser ? (
               <>
-                <form onSubmit={handleAddUser} className="hidden md:flex gap-2">
+                <form onSubmit={handleAddUser} className="flex gap-2">
                   <input
                     type="text" value={inputValue} onChange={e => setInputValue(e.target.value)}
                     placeholder="LeetCode handle..."
-                    className="bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-sm focus:ring-1 focus:ring-orange-500 outline-none"
+                    className="bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-sm focus:ring-1 focus:ring-orange-500 outline-none w-32 md:w-auto"
                   />
                   <button disabled={isLoading} className="bg-orange-600 px-5 py-2 rounded-lg text-sm font-bold">Add</button>
                 </form>
