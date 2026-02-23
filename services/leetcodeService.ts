@@ -1,12 +1,13 @@
 
 import { LeetCodeStats } from "../types";
 
-const LEETCODE_GRAPHQL_URL = "https://leetcode.com/graphql";
+const LEETCODE_GRAPHQL_URL = "/api/leetcode";
 
 // Multiple proxies to cycle through if one returns a 403 or 429
 const PROXY_STRATEGIES = [
-  (url: string) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-  (url: string) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+  (url: string) => url, // Primary: Vercel/Vite native proxy
+  (url: string) => `https://corsproxy.io/?${encodeURIComponent('https://leetcode.com/graphql')}`,
+  (url: string) => `https://api.allorigins.win/raw?url=${encodeURIComponent('https://leetcode.com/graphql')}`,
 ];
 
 const PROFILE_QUERY = `
