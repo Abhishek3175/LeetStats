@@ -251,6 +251,10 @@ const App: React.FC = () => {
                 <p className="text-slate-400">Tip: Check Supabase Dashboard {'>'} Authentication {'>'} URL Configuration {'>'} Redirect URLs.</p>
               </div>
             )}
+
+            <div className="mt-16 text-center text-sm text-slate-500">
+              <a href="/privacy.html" className="hover:text-orange-400 transition-colors">Privacy Policy</a>
+            </div>
           </div>
         ) : (
           <>
