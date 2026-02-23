@@ -1,0 +1,5 @@
+{
+  "name": "LeetStats Compare",
+  "description": "A sleek dashboard to track and compare LeetCode profiles. Monitor problem-solving metrics (Easy, Medium, Hard) and recent activity for multiple users in a single view.",
+  "requestFramePermissions": []
+}
