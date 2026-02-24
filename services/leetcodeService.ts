@@ -133,8 +133,8 @@ export const fetchLeetCodeStats = async (username: string): Promise<LeetCodeStat
     // Sort descending by problems solved
     allTags.sort((a, b) => b.problemsSolved - a.problemsSolved);
 
-    // Keep top 8 tags only
-    const topics = allTags.slice(0, 8);
+    // Keep top 15 tags only
+    const topics = allTags.slice(0, 15);
 
     return {
       username: user.username,

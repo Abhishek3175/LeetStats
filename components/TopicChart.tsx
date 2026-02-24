@@ -6,7 +6,7 @@ interface TopicChartProps {
     stats: LeetCodeStats;
 }
 
-// A vibrant, distinct color palette for the top 8 tags + 'Other' (gray)
+// A vibrant, distinct color palette for the top tags
 const COLORS = [
     '#f97316', // Orange
     '#3b82f6', // Blue
@@ -16,7 +16,13 @@ const COLORS = [
     '#eab308', // Yellow
     '#14b8a6', // Teal
     '#f43f5e', // Rose
-    '#475569', // Slate (Other)
+    '#6366f1', // Indigo
+    '#84cc16', // Lime
+    '#06b6d4', // Cyan
+    '#d946ef', // Fuchsia
+    '#ef4444', // Red
+    '#8b5cf6', // Purple
+    '#f59e0b', // Amber
 ];
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -64,7 +70,7 @@ const TopicChart: React.FC<TopicChartProps> = ({ stats }) => {
                             {stats.topics.map((entry, index) => (
                                 <Cell
                                     key={`cell-${index}`}
-                                    fill={entry.tagName === 'Other' ? COLORS[8] : COLORS[index % (COLORS.length - 1)]}
+                                    fill={COLORS[index % COLORS.length]}
                                 />
                             ))}
                         </Pie>
@@ -74,10 +80,10 @@ const TopicChart: React.FC<TopicChartProps> = ({ stats }) => {
             </div>
 
             {/* Custom Legend */}
-            <div className="mt-4 flex flex-wrap gap-2 justify-center max-w-full">
-                {stats.topics.slice(0, 4).map((topic, index) => (
+            <div className="mt-4 flex flex-wrap gap-2 justify-center max-w-full px-2">
+                {stats.topics.slice(0, 15).map((topic, index) => (
                     <div key={topic.tagName} className="flex items-center gap-1.5 text-xs">
-                        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: topic.tagName === 'Other' ? COLORS[8] : COLORS[index % (COLORS.length - 1)] }}></span>
+                        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }}></span>
                         <span className="text-slate-400 whitespace-nowrap">{topic.tagName}</span>
                     </div>
                 ))}
