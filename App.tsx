@@ -215,16 +215,6 @@ const App: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            {currentUser && (
-              <button
-                onClick={() => setShowLeaderboard(!showLeaderboard)}
-                className="w-10 h-10 flex items-center justify-center rounded-lg bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20 hover:text-yellow-400 transition-colors tooltip-trigger relative shadow-inner border border-yellow-500/20"
-                title="Global Leaderboard"
-              >
-                <i className="fa-solid fa-trophy text-lg"></i>
-              </button>
-            )}
-
             {currentUser ? (
               <>
                 <form onSubmit={handleAddUser} className="flex gap-2">
@@ -320,6 +310,14 @@ const App: React.FC = () => {
                   </div>
                 )}
               </div>
+
+              <button
+                onClick={() => setShowLeaderboard(true)}
+                className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 hover:from-yellow-500/30 hover:to-orange-500/30 border border-yellow-500/30 text-yellow-500 px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all shadow-lg"
+              >
+                <i className="fa-solid fa-trophy"></i>
+                Leaderboard
+              </button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
