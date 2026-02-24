@@ -7,6 +7,7 @@ import StatsCard from './components/StatsCard';
 import ComparisonChart from './components/ComparisonChart';
 import ActivityChart from './components/ActivityChart';
 import TopicChart from './components/TopicChart';
+import { Leaderboard } from './components/Leaderboard';
 
 const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<GoogleUser | null>(null);
@@ -18,6 +19,7 @@ const App: React.FC = () => {
 
   const [selectedForDisplay, setSelectedForDisplay] = useState<string[]>([]);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   const [showFilters, setShowFilters] = useState(false);
   const [filter, setFilter] = useState({ minEasy: 0, minMedium: 0, minHard: 0, onlyWithContest: false });
@@ -213,6 +215,16 @@ const App: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-4">
+            {currentUser && (
+              <button
+                onClick={() => setShowLeaderboard(!showLeaderboard)}
+                className="w-10 h-10 flex items-center justify-center rounded-lg bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20 hover:text-yellow-400 transition-colors tooltip-trigger relative shadow-inner border border-yellow-500/20"
+                title="Global Leaderboard"
+              >
+                <i className="fa-solid fa-trophy text-lg"></i>
+              </button>
+            )}
+
             {currentUser ? (
               <>
                 <form onSubmit={handleAddUser} className="flex gap-2">
@@ -324,6 +336,13 @@ const App: React.FC = () => {
 
             <ActivityChart data={filteredAndSortedUsernames.map(u => statsMap[u]).filter(Boolean)} />
             <ComparisonChart data={filteredAndSortedUsernames.map(u => statsMap[u]).filter(Boolean)} />
+
+            {showLeaderboard && (
+              <Leaderboard
+                users={filteredAndSortedUsernames.map(u => statsMap[u]).filter(Boolean)}
+                onClose={() => setShowLeaderboard(false)}
+              />
+            )}
 
             <div className="mt-16 text-center text-sm text-slate-500 pb-8 flex space-x-4 justify-center">
               <a href="/privacy.html" className="hover:text-orange-400 transition-colors">Privacy Policy</a>
