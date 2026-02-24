@@ -24,6 +24,20 @@ const PROFILE_QUERY = `
           count
         }
       }
+      tagProblemCounts {
+        advanced {
+          tagName
+          problemsSolved
+        }
+        intermediate {
+          tagName
+          problemsSolved
+        }
+        fundamental {
+          tagName
+          problemsSolved
+        }
+      }
       submissionCalendar
     }
   }
@@ -109,6 +123,19 @@ export const fetchLeetCodeStats = async (username: string): Promise<LeetCodeStat
 
     const parsedCalendar = parseCalendar(user.submissionCalendar);
 
+    // Parse and flatten topics
+    const allTags = [
+      ...(user.tagProblemCounts?.advanced || []),
+      ...(user.tagProblemCounts?.intermediate || []),
+      ...(user.tagProblemCounts?.fundamental || []),
+    ];
+
+    // Sort descending by problems solved
+    allTags.sort((a, b) => b.problemsSolved - a.problemsSolved);
+
+    // Keep top 8 tags only
+    const topics = allTags.slice(0, 8);
+
     return {
       username: user.username,
       totalSolved: total,
@@ -124,6 +151,7 @@ export const fetchLeetCodeStats = async (username: string): Promise<LeetCodeStat
         pastMonth: parsedCalendar.pastMonth,
       },
       calendar: parsedCalendar.calendar,
+      topics,
       lastActiveTimestamp: Date.now(),
       lastUpdated: Date.now()
     };

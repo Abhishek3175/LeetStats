@@ -6,6 +6,7 @@ import { supabase } from './lib/supabase';
 import StatsCard from './components/StatsCard';
 import ComparisonChart from './components/ComparisonChart';
 import ActivityChart from './components/ActivityChart';
+import TopicChart from './components/TopicChart';
 
 const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<GoogleUser | null>(null);
@@ -312,6 +313,12 @@ const App: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {filteredAndSortedUsernames.map(u => statsMap[u] && (
                 <StatsCard key={u} stats={statsMap[u]} onRemove={() => handleRemove(u)} onRefresh={() => fetchUserData(currentUser.id)} isLoading={isLoading} />
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+              {filteredAndSortedUsernames.map(u => statsMap[u] && (
+                <TopicChart key={`topics-${u}`} stats={statsMap[u]} />
               ))}
             </div>
 

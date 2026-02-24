@@ -22,6 +22,7 @@ export interface LeetCodeStats {
     pastMonth: number;
   };
   calendar: Record<string, number>;
+  topics: { tagName: string, problemsSolved: number }[];
   lastActiveTimestamp?: number;
   lastUpdated: number;
 }
